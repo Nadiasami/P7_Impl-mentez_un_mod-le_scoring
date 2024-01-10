@@ -2,7 +2,7 @@
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 # More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
 
-name: Build and deploy Python app to Azure Web App
+name: Test_unitaires_build
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run Test unitaire API
-        run: pytest ./Tests_unitaires/Pytest_unitaire_test_functions_preprocessing.py
+        run: pytest /home/runner/work/P7_Implementez_un_modele_scoring/P7_Implementez_un_modele_scoring/Tests_unitaires/Pytest_unitaire_test_functions_preprocessing.py
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
