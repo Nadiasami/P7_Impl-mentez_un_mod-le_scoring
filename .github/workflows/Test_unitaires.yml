@@ -31,7 +31,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run Test unitaire API
-        run: pytest ./home/runner/work/P7_Implementez_un_modele_scoring/P7_Implementez_un_modele_scoring/Tests-Unitaires/Pytest_unitaire_test_functions_preprocessing.py
+        run: pytest ./home/runner/work/P7_Implementez_un_modele_scoring/P7_Implementez_un_modele_scoring/Tests_unitaires/Pytest_unitaire_test_functions_preprocessing.py
 
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
