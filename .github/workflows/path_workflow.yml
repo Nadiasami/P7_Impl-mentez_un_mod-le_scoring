@@ -1,0 +1,13 @@
+name: Afficher le chemin de travail
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  afficher-chemin:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Afficher le chemin de travail
+      run: |
+        echo "Le chemin de travail est $GITHUB_WORKSPACE"
