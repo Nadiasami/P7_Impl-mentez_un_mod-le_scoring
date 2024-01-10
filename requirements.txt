@@ -91,7 +91,6 @@ jupyterlab-widgets==3.0.5
 jupyterlab_server==2.19.0
 kiwisolver==1.4.4
 knnimpute==0.1.0
-lightgbm==3.3.5
 llvmlite==0.39.1
 Mako==1.2.4
 Markdown==3.4.1
