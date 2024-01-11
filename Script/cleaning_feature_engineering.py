@@ -11,11 +11,12 @@ import seaborn as sns
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-
-# Importation des features importances du script de base
-feature_importance_df = pd.read_csv('C:/Users/smart asus/P7_données/code_vs_code/analyse_nettoyage_experiences/Feature_importance_for_model_optimi_time/feature_importance_df.csv')
-feature_importance_0 = feature_importance_df[feature_importance_df['importance']==0]
-feature_importance_0_list = feature_importance_0['feature'].unique()
+def lire_et_traiter_donnees():
+    # Importation des features importances du script de base
+    feature_importance_df = pd.read_csv('C:/Users/smart asus/P7_données/code_vs_code/analyse_nettoyage_experiences/Feature_importance_for_model_optimi_time/feature_importance_df.csv')
+    feature_importance_0 = feature_importance_df[feature_importance_df['importance']==0]
+    feature_importance_0_list = feature_importance_0['feature'].unique()
+    return feature_importance_0_list
 
 # Fonction qui supprime les colonnes qui ont une valeur unique dans leurs rangs
 def supprimer_colonnes_valeurs_uniques(df):
@@ -95,7 +96,7 @@ def bureau_and_balance(num_rows = None, nan_as_category = True):
     num_aggregations = {
         'DAYS_CREDIT': ['min', 'max', 'mean', 'var'],
         'DAYS_CREDIT_ENDDATE': ['min', 'max', 'mean'],
-        'DAYS_CREDIT_UPDATE': ['mean'],
+        'DAYS_CREDIT_UPDATE': ['mean'], 
         'CREDIT_DAY_OVERDUE': ['max', 'mean'],
         'AMT_CREDIT_MAX_OVERDUE': ['mean'],
         'AMT_CREDIT_SUM': ['max', 'mean', 'sum'],
@@ -307,6 +308,7 @@ def supprimer_var_correl(df, threshold=0.9):
     
 
 def feature_importances(df, debug= False):
+    feature_importance_0_list = supprimer_colonnes_valeurs_uniques()
     for col in df.columns:
         if col in feature_importance_0_list:
             df = df.drop(columns=[col])
