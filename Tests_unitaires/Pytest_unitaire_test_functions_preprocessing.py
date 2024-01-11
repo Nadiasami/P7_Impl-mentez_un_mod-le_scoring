@@ -1,7 +1,8 @@
 ########################## Test function remplir_valeurs_manquantes ################################################################################################################################
 import pandas as pd
 import numpy as np
-from cleaning_feature_engineering import remplir_valeurs_manquantes, supprimer_colonnes_manquantes, supprimer_var_correl  
+from cleaning_feature_engineering import remplir_valeurs_manquantes, supprimer_colonnes_manquantes, supprimer_var_correl 
+import pytest 
 
 def test_remplir_valeurs_manquantes():
     # Créez un petit jeu de données pour le test
