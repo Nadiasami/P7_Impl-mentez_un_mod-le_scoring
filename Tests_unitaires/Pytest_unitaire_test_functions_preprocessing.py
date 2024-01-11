@@ -1,6 +1,11 @@
 ########################## Test function remplir_valeurs_manquantes ################################################################################################################################
 import pandas as pd
 import numpy as np
+import pytest
+
+# Ajouter le chemin relatif du fichier cleaning_feature_engineering.py au sys.path pour pouvoir l'importer
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Scripts')))
+
 from cleaning_feature_engineering import remplir_valeurs_manquantes, supprimer_colonnes_manquantes, supprimer_var_correl  
 
 def test_remplir_valeurs_manquantes():
