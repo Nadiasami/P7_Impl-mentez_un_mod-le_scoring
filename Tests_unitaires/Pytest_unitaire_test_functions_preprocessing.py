@@ -4,11 +4,12 @@ import os
 import sys
 import pytest 
 
+# Obtenez le chemin absolu du fichier CSV
+csv_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Feature_importance_for_model_optimi_time', 'feature_importance_df.csv'))
+
 # Ajouter le chemin du répertoire parent au chemin de recherche du module
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# Maintenant, vous pouvez importer des modules depuis le répertoire parent
-from Feature_importance_for_model_optimi_time import feature_importance_df
 from Script import cleaning_feature_engineering
 from cleaning_feature_engineering import remplir_valeurs_manquantes, supprimer_colonnes_manquantes, supprimer_var_correl, supprimer_colonnes_valeurs_uniques, one_hot_encoder
 
@@ -16,7 +17,7 @@ from cleaning_feature_engineering import remplir_valeurs_manquantes, supprimer_c
 
 def test_csv_loading():
     # Détermine le chemin du fichier CSV
-    df = pd.read_csv(feature_importance_df)
+    df = pd.read_csv(csv_path)
     # Appliquer les lignes de code à tester
     feature_importance_0 = df[df['importance'] == 0]
     unique_features = feature_importance_0['feature'].unique()
