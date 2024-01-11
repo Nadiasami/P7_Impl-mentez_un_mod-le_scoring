@@ -1,14 +1,68 @@
-########################## Test function remplir_valeurs_manquantes ################################################################################################################################
 import pandas as pd
 import numpy as np
-<<<<<<< HEAD
-from cleaning_feature_engineering import remplir_valeurs_manquantes, supprimer_colonnes_manquantes, supprimer_var_correl  
-import pytest
-=======
+import os
+import sys
 import pytest 
 
-from cleaning_feature_engineering import remplir_valeurs_manquantes, supprimer_colonnes_manquantes, supprimer_var_correl  
->>>>>>> da85c28567654ac37b573e527a96b75af22eeec8
+# Ajouter le chemin du répertoire parent au chemin de recherche du module
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+# Maintenant, vous pouvez importer des modules depuis le répertoire parent
+from Feature_importance_for_model_optimi_time import feature_importance_df
+from Script import cleaning_feature_engineering
+from cleaning_feature_engineering import remplir_valeurs_manquantes, supprimer_colonnes_manquantes, supprimer_var_correl, supprimer_colonnes_valeurs_uniques, one_hot_encoder
+
+########################## Test function lire_et_traiter_donnees #############################################################################################################################
+
+def test_csv_loading():
+    # Détermine le chemin du fichier CSV
+    df = pd.read_csv(feature_importance_df)
+    # Appliquer les lignes de code à tester
+    feature_importance_0 = df[df['importance'] == 0]
+    unique_features = feature_importance_0['feature'].unique()
+    # Vérifie que le DataFrame n'est pas vide
+    assert not df.empty, "Erreur dans le chargement du CSV."
+    assert len(unique_features) == len(set(unique_features)), "La liste unique_features contient des valeurs en double."
+    
+########################## Test function one hot encoding #############################################################################################################################    
+    
+def test_one_hot_encoder():
+        # Créer un DataFrame pour le test
+        data = {'Category': ['A', 'B', 'A', 'C', 'B'],
+                'Value': [10, 20, 15, 25, 30]}
+        df = pd.DataFrame(data)
+
+        # Appeler la fonction one_hot_encoder sur le DataFrame de test
+        result  = one_hot_encoder(df)
+        # Extraire le premier élément du tuple (le DataFrame encodé)
+        df_encoded = result[0]
+
+        # Vérifier que les colonnes encodées ne sont plus de type 'object'
+        assert all(df_encoded[col].dtype != 'object' for col in df_encoded.columns)
+    
+########################### Test function remplir_valeurs_manquantes #############################################################################################################################
+
+def test_supprimer_colonnes_valeurs_uniques():
+    # Créez un petit jeu de données pour le test
+    data = {
+        'CODE_GENDER': ['F', np.nan, np.nan, np.nan,np.nan, np.nan, np.nan, 'M', 'Y', np.nan],
+        'FLAG_OWN_CAR': ['Y', 'N', 'Y', np.nan, np.nan, np.nan, np.nan, np.nan,'Y', 'Y'],
+        'DAYS_EMPLOYED': [np.nan, np.nan, 400, 250, np.nan, np.nan, np.nan, np.nan, 350, 240],
+        'DAYS_BIRTH': [12000, 12000, 12000, 12000, 12000, 12000, 12000, 12000, 12000, 12000],
+        'AMT_INCOME_TOTAL': [np.nan, np.nan, 70000, 80000, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan],
+        'AMT_CREDIT': [100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000],
+        'CNT_FAM_MEMBERS': [2, 1, 3, 4, 5, 6, 7, 8, 9, 10],
+        'TARGET': [0, 1, 1, 0, 0, 0, 0, 1, 1, 0]
+    }
+
+    df_test = pd.DataFrame(data)
+    filled_df = supprimer_colonnes_valeurs_uniques(df_test)
+
+    # Vérifiez si les valeurs manquantes ont été correctement remplies
+    assert 'DAYS_BIRTH' not in filled_df
+    assert 'AMT_CREDIT' not in filled_df
+
+########################## Test function remplir_valeurs_manquantes #############################################################################################################################
 
 def test_remplir_valeurs_manquantes():
     # Créez un petit jeu de données pour le test
@@ -77,4 +131,3 @@ def test_supprimer_var_correl():
     # Vérifiez si les colonnes ont été supprimées correctement
     assert 'DAYS_BIRTH' not in df_sans_colonnes_correlees.columns
     assert 'CODE_GENDER' in df_sans_colonnes_correlees.columns
-    
