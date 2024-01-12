@@ -17,6 +17,8 @@ csv_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Featur
 
 def test_csv_loading():
     # Détermine le chemin du fichier CSV
+    csv_path = os.path.join(current_directory, "..", "Feature_importance_for_model_optimi_time", "feature_importance_df.csv")
+    # Charge le fichier CSV dans un DataFrame pandas
     df = pd.read_csv(csv_path)
     # Appliquer les lignes de code à tester
     feature_importance_0 = df[df['importance'] == 0]
@@ -62,7 +64,73 @@ def test_supprimer_colonnes_valeurs_uniques():
     # Vérifiez si les valeurs manquantes ont été correctement remplies
     assert 'DAYS_BIRTH' not in filled_df
     assert 'AMT_CREDIT' not in filled_df
+    
+########################## Test function application_train_test #############################################################################################################################
 
+def test_application_train_test():
+    # Détermine le chemin du fichier CSV
+    csv_path_1 = os.path.join(current_directory, "..", "..", "data", "application_train.csv")
+    csv_path_2 = os.path.join(current_directory, "..", "..", "data", "application_test.csv")
+    # Charge le fichier CSV dans un DataFrame pandas
+    df1= pd.read_csv(csv_path_1)
+    df2= pd.read_csv(csv_path_2) 
+    # Vérifie que le DataFrame n'est pas vide
+    assert not df1.empty, "Erreur dans le chargement du CSV application_train."
+    assert not df2.empty, "Erreur dans le chargement du CSV application_test."
+    
+########################## Test function bureau_and_balance #############################################################################################################################
+
+def test_bureau_and_balance():
+    # Détermine le chemin du fichier CSV
+    csv_path_1 = os.path.join(current_directory, "..", "..", "data", "bureau.csv")
+    csv_path_2 = os.path.join(current_directory, "..", "..", "data", "bureau_balance.csv")
+    # Charge le fichier CSV dans un DataFrame pandas
+    df1= pd.read_csv(csv_path_1)
+    df2= pd.read_csv(csv_path_2) 
+    # Vérifie que le DataFrame n'est pas vide
+    assert not df1.empty, "Erreur dans le chargement du CSV bureau."
+    assert not df2.empty, "Erreur dans le chargement du CSV bureau_balance."
+    
+########################## Test function previous_applications #############################################################################################################################
+
+def test_previous_applications():
+    # Détermine le chemin du fichier CSV
+    csv_path = os.path.join(current_directory, "..", "..", "data", "previous_application.csv")
+    # Charge le fichier CSV dans un DataFrame pandas
+    df1= pd.read_csv(csv_path) 
+    # Vérifie que le DataFrame n'est pas vide
+    assert not df1.empty, "Erreur dans le chargement du CSV previous_application."
+    
+########################## Test function POS_CASH_balance #############################################################################################################################
+
+def test_POS_CASH_balance():
+    # Détermine le chemin du fichier CSV
+    csv_path = os.path.join(current_directory, "..", "..", "data", "POS_CASH_balance.csv")
+    # Charge le fichier CSV dans un DataFrame pandas
+    df1= pd.read_csv(csv_path) 
+    # Vérifie que le DataFrame n'est pas vide
+    assert not df1.empty, "Erreur dans le chargement du CSV POS_CASH_balance."
+    
+########################## Test function installments_payments #############################################################################################################################
+
+def test_installments_payments():
+    # Détermine le chemin du fichier CSV
+    csv_path = os.path.join(current_directory, "..", "..", "data", "installments_payments.csv")
+    # Charge le fichier CSV dans un DataFrame pandas
+    df1= pd.read_csv(csv_path) 
+    # Vérifie que le DataFrame n'est pas vide
+    assert not df1.empty, "Erreur dans le chargement du installments_payments."
+    
+########################## Test function credit_card_balance #############################################################################################################################
+
+def test_icredit_card_balance():
+    # Détermine le chemin du fichier CSV
+    csv_path = os.path.join(current_directory, "..", "..", "data", "credit_card_balance.csv")
+    # Charge le fichier CSV dans un DataFrame pandas
+    df1= pd.read_csv(csv_path) 
+    # Vérifie que le DataFrame n'est pas vide
+    assert not df1.empty, "Erreur dans le chargement du credit_card_balance."
+    
 ########################## Test function remplir_valeurs_manquantes #############################################################################################################################
 
 def test_remplir_valeurs_manquantes():
