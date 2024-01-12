@@ -8,7 +8,7 @@ import pytest
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from Script import cleaning_feature_engineering
-from cleaning_feature_engineering import remplir_valeurs_manquantes, supprimer_colonnes_manquantes, supprimer_var_correl, supprimer_colonnes_valeurs_uniques, one_hot_encoder
+from Script.cleaning_feature_engineering import remplir_valeurs_manquantes, supprimer_colonnes_manquantes, supprimer_var_correl, supprimer_colonnes_valeurs_uniques, one_hot_encoder
 
 # Obtenez le chemin absolu du fichier CSV
 csv_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Feature_importance_for_model_optimi_time', 'feature_importance_df.csv'))
