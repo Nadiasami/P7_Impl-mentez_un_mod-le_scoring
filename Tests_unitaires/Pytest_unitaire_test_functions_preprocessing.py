@@ -1,14 +1,137 @@
-########################## Test function remplir_valeurs_manquantes ################################################################################################################################
 import pandas as pd
 import numpy as np
-<<<<<<< HEAD
-from cleaning_feature_engineering import remplir_valeurs_manquantes, supprimer_colonnes_manquantes, supprimer_var_correl  
-import pytest
-=======
+import os
+import sys
 import pytest 
 
-from cleaning_feature_engineering import remplir_valeurs_manquantes, supprimer_colonnes_manquantes, supprimer_var_correl  
->>>>>>> da85c28567654ac37b573e527a96b75af22eeec8
+# Ajouter le chemin du répertoire parent au chemin de recherche du module (si nécessaire)
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from Script import cleaning_feature_engineering
+from Script.cleaning_feature_engineering import remplir_valeurs_manquantes, supprimer_colonnes_manquantes, supprimer_var_correl, supprimer_colonnes_valeurs_uniques, one_hot_encoder
+
+# Obtenez le chemin absolu du fichier CSV
+csv_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Feature_importance_for_model_optimi_time', 'feature_importance_df.csv'))
+
+########################## Test function lire_et_traiter_donnees #############################################################################################################################
+
+def test_csv_loading():
+    # Détermine le chemin du fichier CSV
+    csv_path = os.path.join(current_directory, "..", "Feature_importance_for_model_optimi_time", "feature_importance_df.csv")
+    # Charge le fichier CSV dans un DataFrame pandas
+    df = pd.read_csv(csv_path)
+    # Appliquer les lignes de code à tester
+    feature_importance_0 = df[df['importance'] == 0]
+    unique_features = feature_importance_0['feature'].unique()
+    # Vérifie que le DataFrame n'est pas vide
+    assert not df.empty, "Erreur dans le chargement du CSV."
+    assert len(unique_features) == len(set(unique_features)), "La liste unique_features contient des valeurs en double."
+    
+########################## Test function one hot encoding #############################################################################################################################    
+    
+def test_one_hot_encoder():
+        # Créer un DataFrame pour le test
+        data = {'Category': ['A', 'B', 'A', 'C', 'B'],
+                'Value': [10, 20, 15, 25, 30]}
+        df = pd.DataFrame(data)
+
+        # Appeler la fonction one_hot_encoder sur le DataFrame de test
+        result  = one_hot_encoder(df)
+        # Extraire le premier élément du tuple (le DataFrame encodé)
+        df_encoded = result[0]
+
+        # Vérifier que les colonnes encodées ne sont plus de type 'object'
+        assert all(df_encoded[col].dtype != 'object' for col in df_encoded.columns)
+    
+########################### Test function remplir_valeurs_manquantes #############################################################################################################################
+
+def test_supprimer_colonnes_valeurs_uniques():
+    # Créez un petit jeu de données pour le test
+    data = {
+        'CODE_GENDER': ['F', np.nan, np.nan, np.nan,np.nan, np.nan, np.nan, 'M', 'Y', np.nan],
+        'FLAG_OWN_CAR': ['Y', 'N', 'Y', np.nan, np.nan, np.nan, np.nan, np.nan,'Y', 'Y'],
+        'DAYS_EMPLOYED': [np.nan, np.nan, 400, 250, np.nan, np.nan, np.nan, np.nan, 350, 240],
+        'DAYS_BIRTH': [12000, 12000, 12000, 12000, 12000, 12000, 12000, 12000, 12000, 12000],
+        'AMT_INCOME_TOTAL': [np.nan, np.nan, 70000, 80000, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan],
+        'AMT_CREDIT': [100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000],
+        'CNT_FAM_MEMBERS': [2, 1, 3, 4, 5, 6, 7, 8, 9, 10],
+        'TARGET': [0, 1, 1, 0, 0, 0, 0, 1, 1, 0]
+    }
+
+    df_test = pd.DataFrame(data)
+    filled_df = supprimer_colonnes_valeurs_uniques(df_test)
+
+    # Vérifiez si les valeurs manquantes ont été correctement remplies
+    assert 'DAYS_BIRTH' not in filled_df
+    assert 'AMT_CREDIT' not in filled_df
+    
+########################## Test function application_train_test #############################################################################################################################
+
+def test_application_train_test():
+    # Détermine le chemin du fichier CSV
+    csv_path_1 = os.path.join(current_directory, "..", "..", "data", "application_train.csv")
+    csv_path_2 = os.path.join(current_directory, "..", "..", "data", "application_test.csv")
+    # Charge le fichier CSV dans un DataFrame pandas
+    df1= pd.read_csv(csv_path_1)
+    df2= pd.read_csv(csv_path_2) 
+    # Vérifie que le DataFrame n'est pas vide
+    assert not df1.empty, "Erreur dans le chargement du CSV application_train."
+    assert not df2.empty, "Erreur dans le chargement du CSV application_test."
+    
+########################## Test function bureau_and_balance #############################################################################################################################
+
+def test_bureau_and_balance():
+    # Détermine le chemin du fichier CSV
+    csv_path_1 = os.path.join(current_directory, "..", "..", "data", "bureau.csv")
+    csv_path_2 = os.path.join(current_directory, "..", "..", "data", "bureau_balance.csv")
+    # Charge le fichier CSV dans un DataFrame pandas
+    df1= pd.read_csv(csv_path_1)
+    df2= pd.read_csv(csv_path_2) 
+    # Vérifie que le DataFrame n'est pas vide
+    assert not df1.empty, "Erreur dans le chargement du CSV bureau."
+    assert not df2.empty, "Erreur dans le chargement du CSV bureau_balance."
+    
+########################## Test function previous_applications #############################################################################################################################
+
+def test_previous_applications():
+    # Détermine le chemin du fichier CSV
+    csv_path = os.path.join(current_directory, "..", "..", "data", "previous_application.csv")
+    # Charge le fichier CSV dans un DataFrame pandas
+    df1= pd.read_csv(csv_path) 
+    # Vérifie que le DataFrame n'est pas vide
+    assert not df1.empty, "Erreur dans le chargement du CSV previous_application."
+    
+########################## Test function POS_CASH_balance #############################################################################################################################
+
+def test_POS_CASH_balance():
+    # Détermine le chemin du fichier CSV
+    csv_path = os.path.join(current_directory, "..", "..", "data", "POS_CASH_balance.csv")
+    # Charge le fichier CSV dans un DataFrame pandas
+    df1= pd.read_csv(csv_path) 
+    # Vérifie que le DataFrame n'est pas vide
+    assert not df1.empty, "Erreur dans le chargement du CSV POS_CASH_balance."
+    
+########################## Test function installments_payments #############################################################################################################################
+
+def test_installments_payments():
+    # Détermine le chemin du fichier CSV
+    csv_path = os.path.join(current_directory, "..", "..", "data", "installments_payments.csv")
+    # Charge le fichier CSV dans un DataFrame pandas
+    df1= pd.read_csv(csv_path) 
+    # Vérifie que le DataFrame n'est pas vide
+    assert not df1.empty, "Erreur dans le chargement du installments_payments."
+    
+########################## Test function credit_card_balance #############################################################################################################################
+
+def test_icredit_card_balance():
+    # Détermine le chemin du fichier CSV
+    csv_path = os.path.join(current_directory, "..", "..", "data", "credit_card_balance.csv")
+    # Charge le fichier CSV dans un DataFrame pandas
+    df1= pd.read_csv(csv_path) 
+    # Vérifie que le DataFrame n'est pas vide
+    assert not df1.empty, "Erreur dans le chargement du credit_card_balance."
+    
+########################## Test function remplir_valeurs_manquantes #############################################################################################################################
 
 def test_remplir_valeurs_manquantes():
     # Créez un petit jeu de données pour le test
@@ -77,4 +200,3 @@ def test_supprimer_var_correl():
     # Vérifiez si les colonnes ont été supprimées correctement
     assert 'DAYS_BIRTH' not in df_sans_colonnes_correlees.columns
     assert 'CODE_GENDER' in df_sans_colonnes_correlees.columns
-    
