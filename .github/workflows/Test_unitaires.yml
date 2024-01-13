@@ -1,7 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-# More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
-
 name: Build unitary tests
 
 on:
@@ -33,7 +29,7 @@ jobs:
       - name: Run Test unitaire API
         run: pytest ./Tests_unitaires/Pytest_unitaire_test_functions_preprocessing.py
 
-      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+      # Optional: Add step to run tests here (PyTest)
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
@@ -42,7 +38,7 @@ jobs:
           path: |
             . 
             !venv/
-deploy:
+  deploy:
     runs-on: ubuntu-latest
     needs: build
     environment:
@@ -60,6 +56,9 @@ deploy:
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
+          app-name: 'PredictionProba'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A136748363C64F43B5245DA7ED3B32B3 }}
           app-name: 'PredictionProba'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A136748363C64F43B5245DA7ED3B32B3 }}
