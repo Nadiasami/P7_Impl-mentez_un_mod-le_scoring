@@ -47,6 +47,11 @@ jobs:
         with:
           name: python-app
           path: .
+      - name: Installer render
+        run: |
+          curl -o render https://render.com/download/linux
+          chmod +x render
+          sudo mv render /usr/local/bin/render
 
       - name: Déployer sur Render
         run: |
