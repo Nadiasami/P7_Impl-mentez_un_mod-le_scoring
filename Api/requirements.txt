@@ -1,10 +1,10 @@
-import joblib
-import pandas as pd
-import shap
+joblib
+pandas as pd
+shap
 from flask import Flask, jsonify, request
-import os
-import numpy as np
-import streamlit as st
-import requests
-import matplotlib.pyplot as plt
-import seaborn as sns
+os
+numpy as np
+streamlit as st
+requests
+matplotlib.pyplot as plt
+seaborn as sns
