@@ -42,12 +42,17 @@ jobs:
     needs: build
 
     steps:
-      - name: Télécharger l'artefact depuis le travail de construction
+      - name: Upload artifact for deployment jobs
         uses: actions/download-artifact@v2
         with:
           name: python-app
           path: .
+      - name: Installer render
+        run: |
+          curl -o render https://render.com/download/linux
+          chmod +x render
+          sudo mv render /usr/local/bin/render
 
       - name: Déployer sur Render
         run: |
-          render deploy --config render.yaml --secret RENDER_SECRET_KEY=${{ secrets.RENDER_SECRET_KEY }}
+          render deploy --secret RENDER_API_KEY=${{ secrets.RENDER_API_KEY }}
