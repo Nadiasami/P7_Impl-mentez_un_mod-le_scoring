@@ -64,13 +64,18 @@ if st.button("Run"):
 
                 # Afficher les valeurs SHAP (exemple)
                 exp = shap.Explanation(np.array(shap_values_data['values']),np.array(shap_values_data['base_values']), df_columns)
-                fig, ax = plt.subplots(figsize=(20, 20))
+                fig, ax = plt.subplots(figsize=(12, 20))
                 shap.plots.waterfall(exp[0], max_display=30, show=True)
-                st.pyplot(fig)
+                st.sidebar.pyplot(fig)
+                st.sidebar.title("Locale feature")
 
-                fig, ax = plt.subplots(figsize=(20, 20))
+                # Créer un graphique de barres avec Seaborn
+                fig, ax = plt.subplots(figsize=(12, 18))
                 sns.barplot(x="importance", y="feature", data=pd.DataFrame(response_data["feature_global"]))
-                st.pyplot(fig)
+                st.sidebar.pyplot(fig)
+                st.sidebar.title("Globale feature")
+
+                st.set_option('deprecation.showPyplotGlobalUse', False)
 
                 # Effacer automatiquement l'identifiant actuel après avoir traité l'appel API
                 id = ""
