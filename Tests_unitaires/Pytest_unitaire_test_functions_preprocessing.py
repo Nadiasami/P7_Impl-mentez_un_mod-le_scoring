@@ -7,8 +7,7 @@ import pytest
 # Ajouter le chemin du répertoire parent au chemin de recherche du module (si nécessaire)
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from Script_feature_enginnering import cleaning_feature_engineering
-from Script_feature_engineering.cleaning_feature_engineering import remplir_valeurs_manquantes, supprimer_colonnes_manquantes, supprimer_var_correl, supprimer_colonnes_valeurs_uniques, one_hot_encoder
+from Script_preprocessing.cleaning_feature_engineering import remplir_valeurs_manquantes, supprimer_colonnes_manquantes, supprimer_var_correl, supprimer_colonnes_valeurs_uniques, one_hot_encoder
 
 # Obtenez le chemin absolu du fichier CSV
 

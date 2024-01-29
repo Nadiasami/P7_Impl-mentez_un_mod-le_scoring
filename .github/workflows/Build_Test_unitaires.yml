@@ -23,7 +23,7 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r Script_preprocessing/requirements.txt
 
       - name: Run Test unitaire API
         run: pytest ./Tests_unitaires/Pytest_unitaire_test_functions_preprocessing.py
