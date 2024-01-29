@@ -1,0 +1,7 @@
+artifact_location: file:///C:/Users/smart%20asus/P7_donn%C3%A9es/code_vs_code/analyse_nettoyage_experiences/Models/mlruns/505159289970903153
+creation_time: 1706411477047
+experiment_id: '505159289970903153'
+last_update_time: 1706412129064
+lifecycle_stage: deleted
+name: modèle_xgboost_test_roc
+tags: {}

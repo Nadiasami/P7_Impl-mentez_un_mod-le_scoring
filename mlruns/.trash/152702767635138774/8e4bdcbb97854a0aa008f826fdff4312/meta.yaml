@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/smart%20asus/P7_donn%C3%A9es/code_vs_code/analyse_nettoyage_experiences/Models/mlruns/152702767635138774/8e4bdcbb97854a0aa008f826fdff4312/artifacts
+deleted_time: 1705977776764
+end_time: 1705977456120
+entry_point_name: ''
+experiment_id: '152702767635138774'
+lifecycle_stage: deleted
+run_id: 8e4bdcbb97854a0aa008f826fdff4312
+run_name: modèle_xgboost
+run_uuid: 8e4bdcbb97854a0aa008f826fdff4312
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1705977416743
+status: 3
+tags: []
+user_id: smart asus

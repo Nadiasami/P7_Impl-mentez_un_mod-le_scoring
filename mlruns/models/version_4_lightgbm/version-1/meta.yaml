@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1705088372660
+current_stage: Staging
+description: ''
+last_updated_timestamp: 1705088392329
+name: version_4_lightgbm
+run_id: d69060af94d84422a778cccb3665d955
+run_link: ''
+source: file:///C:/Users/smart%20asus/P7_donn%C3%A9es/code_vs_code/analyse_nettoyage_experiences/Models/mlruns/143934899627496348/d69060af94d84422a778cccb3665d955/artifacts/model_lgbm
+status: READY
+status_message: null
+storage_location: file:///C:/Users/smart%20asus/P7_donn%C3%A9es/code_vs_code/analyse_nettoyage_experiences/Models/mlruns/143934899627496348/d69060af94d84422a778cccb3665d955/artifacts/model_lgbm
+user_id: null
+version: 1

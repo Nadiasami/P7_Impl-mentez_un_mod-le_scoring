@@ -1,0 +1,7 @@
+artifact_location: file:///C:/Users/smart%20asus/P7_donn%C3%A9es/code_vs_code/analyse_nettoyage_experiences/Models/mlruns/390546757603450779
+creation_time: 1705591556650
+experiment_id: '390546757603450779'
+last_update_time: 1705593282073
+lifecycle_stage: deleted
+name: modèle_xgboost_custom_thr_opt
+tags: {}

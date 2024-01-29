@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/smart%20asus/P7_donn%C3%A9es/code_vs_code/analyse_nettoyage_experiences/Models/mlruns/871752174080495708/780c3780ef7f4a149280ee21739ca502/artifacts
+deleted_time: 1706480888654
+end_time: 1706479132604
+entry_point_name: ''
+experiment_id: '871752174080495708'
+lifecycle_stage: deleted
+run_id: 780c3780ef7f4a149280ee21739ca502
+run_name: modèle_lightgbm
+run_uuid: 780c3780ef7f4a149280ee21739ca502
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1706479114692
+status: 3
+tags: []
+user_id: smart asus
