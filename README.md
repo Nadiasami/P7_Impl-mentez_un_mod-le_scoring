@@ -7,7 +7,7 @@ Quelques étapes de prétraitement supplémentaires ont été effectuées, en se
 
 * Classes déséquilibrées :
 
-Les clients ayant remboursés leurs prêts sont présents à presque 90% dans nos données, alors que seulement 10% de clients qui n’ont pas remboursé leurs prêts sont présents, voici le graphique suivant, la valeur de défaut de paiment est 1, alors que 0 représente un client sovable :
+Les clients ayant remboursés leurs prêts sont présents à presque 90% dans nos données, alors que seulement 10% de clients qui n’ont pas remboursé leurs prêts sont présents, voici le graphique suivant, la valeur de défaut de paiment est 1, alors que 0 représente un client sovable.
  
 Pour résoudre cette problématique on a opté à l’utilisation de la méthode smote (Synthetic Minority Over-sampling Technique) qui est une technique utilisée pour traiter le problème de déséquilibre de classes dans un ensemble de données. Elle vise spécifiquement à résoudre le déséquilibre entre les classes minoritaires et majoritaires en générant synthétiquement des exemples de la classe minoritaire.
 
